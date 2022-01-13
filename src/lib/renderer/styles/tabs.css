@@ -1,0 +1,46 @@
+.tabs {
+    margin-top: 50px;
+    padding-bottom: 40px;
+    width: 100%;
+    margin: 0 auto;
+}
+.tab_content {
+    display: none;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    height: calc(100vh - 114px);
+    bottom: 0px;
+}
+.tabs > input[type="radio"] {
+    display: none;
+}
+.tabs > input[type="radio"] + label {
+    width: 300px;
+    height: 40px;
+
+    font-size: 16px;
+    color: var(--hover-text-color);
+
+    text-align: center;
+    line-height: 40px;
+
+    display: table-cell;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s;
+}
+.tabs > input[type="radio"] + label:hover {
+    background-color: var(--hover-background-color);
+    color: var(--hover-text-color);
+}
+.tabs > input[type="radio"]:checked + label {
+    background-color: var(--active-background-color);
+    color: var(--active-text-color);
+}
+#preference_menu_selector_appearance:checked ~ #preference_contents_appearance,
+#preference_menu_selector_advanced:checked ~ #preference_contents_advanced {
+  display: block;
+}

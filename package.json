@@ -1,0 +1,24 @@
+{
+  "name": "FamiIllustStudio",
+  "version": "1.0.0",
+  "description": "The software for drawing and painting.",
+  "appId": "studio.famiillust.app",
+  "author": "Kotone Fami",
+  "main": "src/app.js",
+  "scripts": {
+    "build-win": "electron-builder --win --x64",
+    "build-win-dir": "electron-builder --win --x64 --dir",
+    "build-mac": "electron-builder --mac --x64",
+    "build-mac-dir": "electron-builder --mac --x64 --dir"
+  },
+  "license": "",
+  "devDependencies": {
+    "electron": "16.0.5",
+    "electron-builder": "^22.14.5",
+    "javascript-obfuscator": "^0.6.2"
+  },
+  "dependencies": {
+    "image-pixels": "2.2.2",
+    "xml2json": "^0.12.0"
+  }
+}

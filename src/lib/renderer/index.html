@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title class="js__software_title"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="libraries/colorjoe/colorjoe.css">
+    <link rel="stylesheet" href="libraries/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/tabs.css">
+    <link rel="stylesheet" href="styles/input.css">
+    <link rel="stylesheet" href="styles/loader.css">
+    <link rel="stylesheet" href="styles/area.css">
+    <link rel="stylesheet" href="styles/window.css">
+  </head>
+  <body class="not-loaded">
+    <div class="area" id="area_canvas_list"></div>
+    <div class="area" id="area_canvas">
+      <div class="popup" id="popup_canvas_info">
+
+      </div>
+      <div id="canvas_container"></div>
+      <div class="overlay" id="canvas_container_background" style="display: none;">
+        <p>キャンバスがありません。</p>
+        <p>新規キャンバスを作成するにはCtrl + N（Macの場合はCmd + N）を押してください。</p>
+      </div>
+      <div class="overlay" id="canvas_container_file_drop" style="display: none;">
+        <p>ここにドロップしてファイルを編集します。</p>
+      </div>
+    </div>
+    <div class="area" id="area_left">
+      <div id="color_picker"></div>
+    </div>
+    <div class="window hide" id="window_new_canvas" style="display: none;">
+      <p class="title"><i class="clickable fa-solid fa-angle-left" onclick="FLS.WindowManager.newCanvas.hide();"></i>新しいキャンバス</p>
+      <div class="line"></div>
+      <div class="content">
+          <ul class="big-list">
+              <li>
+                  大きさ: <input type="number" id="new_canvas_size_width" min="1" value="1" onchange="FLS.WindowManager.newCanvas.recalcSize();"><span style="margin: 10px;">x</span><input type="number" id="new_canvas_size_height" min="1" value="1" onchange="FLS.WindowManager.newCanvas.recalcSize();">&nbsp;<span id="new_canvas_aspect">1 : 1</span>
+              </li>
+              <li style="list-style-type: none;">
+                  <button type="button" onclick="FLS.WindowManager.newCanvas.exec();">作成</button>
+              </li>
+          </ul>
+      </div>
+    </div>
+    <div class="window hide" id="window_preference" style="display: none;">
+        <p class="title"><i class="clickable fa-solid fa-angle-left" onclick="FLS.WindowManager.preference.hide();"></i>環境設定</p>
+        <div class="line"></div>
+        <div id="preference_container" class="tabs">
+            <input type="radio" name="preference_selector" id="preference_menu_selector_appearance" value="appearance" checked>
+            <label for="preference_menu_selector_appearance">外観</label>
+            <input type="radio" name="preference_selector" id="preference_menu_selector_advanced" value="advanced">
+            <label for="preference_menu_selector_advanced">高度な設定</label>
+            <div class="dark-line"></div>
+            <div class="tab_content" id="preference_contents_appearance">
+                <ul class="big-list">
+                    <li>
+                        <p>テーマ設定</p>
+                        <div class="inputToggle">
+                           <input type="radio" id="preference_darkMode_0" name="preference_darkMode" onchange="FLS.WindowManager.preference.setRadio(this, 'darkMode');" value="light" class="left">
+                           <label for="preference_darkMode_0"><i class="fa-solid fa-sun fa-fw"></i></label>
+                           <input type="radio" id="preference_darkMode_1" name="preference_darkMode" onchange="FLS.WindowManager.preference.setRadio(this, 'darkMode');" value="os" checked>
+                           <label for="preference_darkMode_1"><i class="fa-solid fa-desktop"></i></label>
+                           <input type="radio" id="preference_darkMode_2" name="preference_darkMode" onchange="FLS.WindowManager.preference.setRadio(this, 'darkMode');" value="dark" class="right">
+                           <label for="preference_darkMode_2"><i class="fa-solid fa-moon fa-fw"></i></label>
+                        </div>
+                        <p id="preference_darkMode_description"></p>
+                    </li>
+                    <li>
+                        <p>フォント設定</p>
+                        <div class="inputToggle">
+                           <input type="radio" id="preference_font_0" name="preference_font" onchange="FLS.WindowManager.preference.setRadio(this, 'font');" value="os" class="left">
+                           <label for="preference_font_0">OS標準</label>
+                           <input type="radio" id="preference_font_1" name="preference_font" onchange="FLS.WindowManager.preference.setRadio(this, 'font');" value="Zen_Kaku_Gothic_New">
+                           <label for="preference_font_1">Zen Kaku Gothic New</label>
+                           <input type="radio" id="preference_font_2" name="preference_font" onchange="FLS.WindowManager.preference.setRadio(this, 'font');" value="DotGothic16">
+                           <label for="preference_font_2">DotGothic16</label>
+                           <input type="radio" id="preference_font_3" name="preference_font" onchange="FLS.WindowManager.preference.setRadio(this, 'font');" value="Klee_One" class="right">
+                           <label for="preference_font_3">Klee One</label>
+                        </div>
+                    </li>
+                    <li>
+                        <p>透明色設定</p>
+                        <input type="color" id="preference_transparentColor0" name="preference_transparentColor0" onchange="FLS.WindowManager.preference.setColor(this, 'transparentColor0');">
+                        <input type="color" id="preference_transparentColor1" name="preference_transparentColor1" onchange="FLS.WindowManager.preference.setColor(this, 'transparentColor1');">
+                        <p>透明を表す際の市松模様の色を指定します。</p>
+                        <p>変更された設定はキャンバスを開いたときに更新されます。</p>
+                    </li>
+                    <li>
+                        <p>背景画像</p>
+                        <input type="file" id="preference_backgroundImage" onchange="FLS.WindowManager.preference.backgroundColor.upload();" accept="image/*">
+                        <label id="preference_backgroundImage_label" for="preference_backgroundImage">背景をアップロード</label>
+                        <input type="text" id="preference_backgroundImage_url" name="preference_backgroundImage_url" onchange="FLS.WindowManager.preference.setString(this, 'backgroundImage');" size="50" placeholder="画像URLを指定">
+                        <p>背景の画像をアップロードするかURLを指定します。</p>
+                        <p>アップロードすると、ローカルに保存されURLが自動生成されます。</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab_content" id="preference_contents_advanced">
+                <ul class="big-list">
+                    <li>
+                        <p>最近使った項目をリセットする</p>
+                        <div class="inputToggle">
+                           <button type="button" onclick="(async function() { await CoreFLS.control('clearRecentDocuments'); })();">最近使った項目をリセットする</button>
+                        </div>
+                        <p>「最近使った項目」をリセットします。</p>
+                    </li>
+                    <li>
+                        <p>設定をリセットする</p>
+                        <div class="inputToggle">
+                           <button type="button" onclick="FLS.WindowManager.preference.reset();">設定をリセットする</button>
+                        </div>
+                        <p>全ての設定をリセットします。この操作は元に戻せません。</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="window hide" id="window_about" style="display: none;">
+        <p class="title"><i class="clickable fa-solid fa-angle-left" onclick="FLS.WindowManager.about.hide();"></i><span class="js__software_title"></span> について</p>
+        <div class="line"></div>
+        <div class="flex-container">
+          <div id="about_logo_area">
+            <img src="images/icon.png" id="about_logo" alt="FamiIllustStudio">
+          </div>
+          <div id="about_text_area">
+            <span id="about_title" class="js__software_title"></span>
+            <span id="about_version" class="js__software_version"></span>
+            <p id="about_detail_version"></p>
+            <p id="about_detail_flag"></p>
+            <p><i class="fas fa-search" id="about_update_icon"></i><span id="about_update_text">アップデートを確認しています...</span></p>
+            <p class="link" onclick="FLS.WindowManager.license.show();">ライセンス</p>
+          </div>
+        </div>
+    </div>
+    <div class="window hide" id="window_license" style="display: none;">
+        <p class="title"><i class="clickable fa-solid fa-angle-left" onclick="FLS.WindowManager.about.show();"></i>ライセンス</p>
+        <div class="line"></div>
+        <div class="container">
+          <ul id="license_list">
+
+          </ul>
+        </div>
+    </div>
+    <div class="window hide" id="window_license_details" style="display: none;">
+        <p class="title"><i class="clickable fa-solid fa-angle-left" onclick="FLS.WindowManager.license.show();"></i><span id="license_details_title"></span></p>
+        <div class="line"></div>
+        <div class="container" id="license_details_content">
+
+        </div>
+    </div>
+    <div class="window hide" id="window_plugin_manager" style="display: none;">
+        <p class="title"><i class="clickable fa-solid fa-angle-left" onclick="FLS.WindowManager.pluginManager.hide();"></i>プラグイン マネージャー</p>
+        <div class="line"></div>
+        <div class="container" id="license_details_content">
+
+        </div>
+    </div>
+    <div class="window" id="window_loading">
+      <div class="loader"></div>
+      <span id="loading_main"></span>
+      <span id="loading_detail">
+        <p><span class="js__software_title"></span> <span class="js__software_version"></span> を開始します。</p>
+      </span>
+    </div>
+
+    <script>var FLS = {};</script>
+    <script src="libraries/webfontloader/webfont.js"></script>
+    <script src="libraries/colorjoe/colorjoe.min.js"></script>
+    <script type="module" src="scripts/core.js"></script>
+    <!-- <script type="module" src="app-build.js"></script> -->
+  </body>
+</html>

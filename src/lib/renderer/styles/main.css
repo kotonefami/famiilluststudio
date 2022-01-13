@@ -1,0 +1,145 @@
+@font-face {
+  font-family: "DotGothic16";
+  src: url("../fonts/DotGothic16/DotGothic16-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Zen_Kaku_Gothic_New";
+  src: url("../fonts/Zen_Kaku_Gothic_New/ZenKakuGothicNew-Light.ttf");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Zen_Kaku_Gothic_New";
+  src: url("../fonts/Zen_Kaku_Gothic_New/ZenKakuGothicNew-Regular.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Zen_Kaku_Gothic_New";
+  src: url("../fonts/Zen_Kaku_Gothic_New/ZenKakuGothicNew-Medium.ttf");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Zen_Kaku_Gothic_New";
+  src: url("../fonts/Zen_Kaku_Gothic_New/ZenKakuGothicNew-Bold.ttf");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Zen_Kaku_Gothic_New";
+  src: url("../fonts/Zen_Kaku_Gothic_New/ZenKakuGothicNew-Black.ttf");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "Klee_One";
+  src: url("../fonts/Klee_One/KleeOne-Regular.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Klee_One";
+  src: url("../fonts/Klee_One/KleeOne-SemiBold.ttf");
+  font-weight: 600;
+}
+
+:root {
+  --base-color-00: #333333;
+  --base-color-01: #494949;
+  --base-color-02: #606060;
+  --base-color-03: #777777;
+  --base-color-04: #8d8d8d;
+  --base-color-05: #a4a4a4;
+  --base-color-06: #bbbbbb;
+  --base-color-07: #d1d1d1;
+  --base-color-08: #e8e8e8;
+  --base-color-09: #ffffff;
+  --base-color-00-transparent: #333333cc;
+  --base-color-01-transparent: #494949cc;
+  --base-color-02-transparent: #606060cc;
+  --base-color-03-transparent: #777777cc;
+  --base-color-04-transparent: #8d8d8dcc;
+  --base-color-05-transparent: #a4a4a4cc;
+  --base-color-06-transparent: #bbbbbbcc;
+  --base-color-07-transparent: #d1d1d1cc;
+  --base-color-08-transparent: #e8e8e8cc;
+  --base-color-09-transparent: #ffffffcc;
+
+  --area-left-width: 200px;
+}
+
+html {
+  background: rgba(0, 0, 0, 0);
+}
+body {
+  background-size: cover;
+  transition: opacity 0.5s;
+
+  width: 100vw;
+  height: 100vh;
+}
+body.not-loaded {
+  opacity: 0;
+}
+body[data-theme="light"] * {
+  --font-color: var(--base-color-00);
+  --font-color-transparent: var(--base-color-04-transparent);
+  --main-background-color: var(--base-color-09);
+  --sub-background-color: var(--base-color-06);
+
+  --area-background-color: var(--base-color-08-transparent);
+  --container-background-color: var(--base-color-05-transparent);
+  --window-background-color: var(--base-color-08-transparent);
+
+  --button-background-color: var(--base-color-05);
+  --button-text-color: var(--base-color-08);
+  --hover-background-color: var(--base-color-07);
+  --hover-text-color: var(--base-color-00);
+  --active-background-color: var(--base-color-04);
+  --active-text-color: var(--base-color-08);
+}
+body[data-theme="dark"] * {
+  --font-color: var(--base-color-09);
+  --font-color-transparent: var(--base-color-05-transparent);
+  --main-background-color: var(--base-color-00);
+  --sub-background-color: var(--base-color-04);
+
+  --area-background-color: var(--base-color-00-transparent);
+  --container-background-color: var(--base-color-03-transparent);
+  --window-background-color: var(--base-color-00-transparent);
+
+  --button-background-color: var(--base-color-04);
+  --button-text-color: var(--base-color-08);
+  --hover-background-color: var(--base-color-02);
+  --hover-text-color: var(--base-color-07);
+  --active-background-color: var(--base-color-03);
+  --active-text-color: var(--base-color-09);
+}
+body *:not(i),
+body[data-font="default"] *:not(i),
+body[data-font="Zen_Kaku_Gothic_New"] *:not(i) {
+  font-family: Zen_Kaku_Gothic_New, sans-serif;
+}
+body[data-font="Klee_One"] *:not(i) {
+  font-family: Klee_One, sans-serif;
+}
+body[data-font="DotGothic16"] *:not(i) {
+  font-family: DotGothic16, sans-serif;
+}
+body[data-font="os"] *:not(i) {
+  font-family: sans-serif;
+}
+
+* {
+    color: var(--font-color);
+}
+html, body {
+    margin: 0px;
+    user-select: none;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--sub-background-color);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}

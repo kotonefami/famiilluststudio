@@ -1,0 +1,127 @@
+#rgbValue, #hslaValue {
+    float: right;
+}
+.cj-container {
+    overflow: auto;
+}
+#showPicker {
+    float: left;
+}
+.colorPicker {
+    width: 100%;
+}
+.colorPicker .extras {
+    float: right;
+}
+.colorPicker .extras .currentColorContainer {
+    overflow: hidden;
+}
+.colorPicker .extras .currentColor {
+    float: right;
+    width: 65px;
+    height: 30px;
+    border: 1px solid #BBB;
+    border-radius: .3em;
+}
+.colorPicker .extras .colorFields {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.colorPicker .extras .color {
+    text-align: right;
+}
+.colorPicker .extras .colorFields input {
+    width: 40px;
+    margin-left: 0.5em;
+}
+.colorPicker .extras .hex {
+    float: right;
+}
+.colorPicker .extras .hex input {
+    width: 60px;
+}
+.colorPicker .twod {
+    float: left;
+    width: calc(100% - 20px);
+    height: 240px;
+}
+.colorPicker .twod .bg {
+    position: absolute;
+    width: calc(100% - 20px);
+    height: 240px;
+}
+.colorPicker .twod .pointer {
+    position: relative;
+    z-index: 2;
+    width: 8px;
+}
+.colorPicker .twod .pointer .shape {
+    position: absolute;
+}
+.colorPicker .twod .pointer .shape1 {
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.colorPicker .twod .pointer .shape2 {
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border: 2px solid white;
+    border-radius: 4px;
+}
+.colorPicker .oned {
+    position: absolute;
+    float: right;
+    right: 0px;
+}
+.colorPicker .oned .bg {
+    height: 240px;
+}
+.colorPicker .oned, .colorPicker .oned .bg, .colorPicker .oned .pointer .shape {
+    width: 20px;
+}
+.colorPicker .oned .pointer {
+    position: absolute;
+    z-index: 2;
+}
+.colorPicker .oned .pointer .shape {
+    position: absolute;
+    margin-left: -1px;
+    margin-top: -4px;
+    height: 5px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.colorPicker .oned .bg {
+    background: linear-gradient(to bottom,  #ff0000 0%,#ffff00 17%,#00ff00 33%,#00ffff 50%,#0000ff 66%,#ff00ff 83%,#ff0000 100%);
+}
+.colorPicker .twod .bg1 {
+    z-index: 0;
+    background: linear-gradient(to right,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+}
+.colorPicker .twod .bg2 {
+    z-index: 1;
+    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
+}
+#hslPicker .twod .bg1 {
+    background: linear-gradient(to right, #ff0000 0%,#ffff00 17%,#00ff00 33%,#00ffff 50%,#0000ff 66%,#ff00ff 83%,#ff0000 100%);
+}
+#hslPicker .twod .bg2 {
+    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(127,127,127,1) 100%);
+}
+#hslPicker .oned .bg {
+    z-index: 1;
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,1) 100%);
+}
+#hslPicker .extras {
+    width: 100px;
+}
+#hslPicker .oned.alpha {
+    margin: 0;
+}
+#hslPicker .oned.alpha .bg {
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(0,0,0,1) 100%); /* W3C */
+}
